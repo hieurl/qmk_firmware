@@ -4,6 +4,8 @@
 #    include "4x5.h"
 #elif defined(KEYBOARD_handwired_dactyl_manuform_4x6)
 #    include "4x6.h"
+#elif defined(KEYBOARD_handwired_dactyl_manuform_4x6_3)
+#    include "4x6_3.h"
 #elif defined(KEYBOARD_handwired_dactyl_manuform_4x6_5)
 #    include "4x6_5.h"
 #elif defined(KEYBOARD_handwired_dactyl_manuform_5x6)
@@ -20,6 +22,8 @@
 #    include "6x7.h"
 #elif defined(KEYBOARD_handwired_dactyl_manuform_dmote_62key)
 #    include "62key.h"
+#elif defined(KEYBOARD_handwired_dactyl_manuform_minitrack)
+#    include "minitrack.h"
 #endif
 
 #include "quantum.h"
