@@ -21,18 +21,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 /* Use I2C or Serial, not both */
-#define USE_SERIAL
-//#define USE_I2C
+//#define USE_SERIAL
 
 /* Select hand configuration */
 //#define MASTER_LEFT
 //#define MASTER_RIGHT
-
-#define EE_HANDS
 #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
 #define RGBLIGHT_EFFECT_SNAKE
 #define RGBLIGHT_EFFECT_BREATHING
+#define RGBLIGHT_SPLIT
+#undef RGBLED_NUM
+#define RGBLED_NUM 18    // Number of LEDs
+#define RGBLED_SPLIT { 9, 9 }
 
 #define LEADER_NO_TIMEOUT
 #define LEADER_PER_KEY_TIMING
 #define LEADER_TIMEOUT 500
+
+

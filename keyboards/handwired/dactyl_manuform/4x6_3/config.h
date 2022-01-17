@@ -38,7 +38,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // WS2812 RGB LED strip input and number of LEDs
 #define RGB_DI_PIN D3
-#define RGBLED_NUM 12
+//#define RGBLED_NUM 12
 
 //#define POINTING_DEVICE_ROTATION_180
+
+
+#define USE_I2C
+//#define USE_SERIAL
+//#define EE_HANDS
+#define SPLIT_USB_DETECT
+#define SOFT_SERIAL_PIN D0
+#define SPLIT_HAND_PIN D2
 
