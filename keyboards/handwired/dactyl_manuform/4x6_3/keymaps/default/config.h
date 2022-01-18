@@ -29,6 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
 #define RGBLIGHT_EFFECT_SNAKE
 #define RGBLIGHT_EFFECT_BREATHING
+#define RGBLIGHT_MODE_TWINKLE
 #define RGBLIGHT_SPLIT
 #undef RGBLED_NUM
 #define RGBLED_NUM 18    // Number of LEDs
