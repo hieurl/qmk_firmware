@@ -15,7 +15,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    //├────────┼───────┼───────┼───────┼───────┼───────┤                      ├───────┼───────┼───────┼───────┼───────┼───────┤
       ESCLSFT,   KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                          KC_H,   KC_J,   KC_K,   KC_L,  KC_SCOLON,KC_BSLS,
    //├────────┼───────┼───────┼───────┼───────┼───────┼───────┐      ┌───────┼───────┼───────┼───────┼───────┼───────┼───────┤ 
-      KC_LCTL,  KC_Z,    KC_X,  KC_C,   KC_V,   KC_B,                          KC_N,  KC_M, KC_COMM,KC_DOT, KC_SLSH,   DM_RSTP, 
+      KC_LCTL,  KC_Z,    KC_X,  KC_C,   KC_V,   KC_B,                          KC_N,  KC_M, KC_COMM,KC_DOT, KC_SLSH,   DM_REC1, 
    //└────────┴───────┴───────┴───┬───┴───┬───┴───┬───┴───┬───┘      └───┬───┴───┬───┴───┬───┴───┬───┼───────┼───────┼───────┤
                          DM_REC1, DM_REC2,TT_LOWR, KC_SPC,TD_LEAD,          TD_ALT, TD_ENT, TT_RAISE, KC_LEFT, KC_RIGHT 
     //                            └───────┴───────┴───────┘              └───────┴───────┴───────┘ 
@@ -27,9 +27,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    //├───────┼───────┼───────┼───────┼───────┼───────┤                      ├───────┼───────┼───────┼───────┼───────┼───────┤
       KC_TILD, KC_UP, KC_DOWN,KC_DQT,TM_UP,TM_DOWN,                         KC_4,   KC_5,    KC_6,  KC_0,   KC_PPLS,KC_PMNS,
    //├───────┼───────┼───────┼───────┼───────┼───────┼───────┐      ┌───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-      ESCLCTL,KC_LEFT,KC_RIGHT,TM_SELECT,TM_LEFT,TM_RIGHT,                    KC_7,  KC_8,    KC_9,  KC_DOT, KC_ASTR ,KC_PSLS, 
+      ESCLCTL,KC_LEFT,KC_RIGHT,TM_SELECT,TM_LEFT,TM_RIGHT,                    KC_7,  KC_8,    KC_9,  KC_DOT, KC_ASTR ,DM_RSTP, 
    //└───────┴───────┴───────┴───┬───┴───┬───┴───┬───┴───┬───┘      └───┬───┴───┬───┴───┬───┴───┬───┼───────┼───────┼───────┤
-                          KC_PGUP, KC_PGDN, TT_LOWR,KC_SPC, KC_ESC,         KC_RALT, KC_ENT, KC_LGUI, KC_LEFT, KC_RIGHT 
+                          DM_PLY1, DM_PLY2, TT_LOWR,KC_SPC, KC_ESC,         KC_RALT, KC_ENT, KC_LGUI, KC_LEFT, KC_RIGHT 
     //                           └───────┴───────┴───────┘              └───────┴───────┴───────┘ 
     ),
 
@@ -39,7 +39,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    //├────────┼───────┼───────┼───────┼───────┼───────┤                      ├───────┼───────┼───────┼───────┼───────┼───────┤
       ESCLSFT, KC_UP,  KC_DOWN, KC_LPRN,KC_RPRN, KC_DQT,                      KC_DLR, KC_PERC,KC_CIRC,KC_RPRN,KC_LEFT, KC_RIGHT, 
    //├────────┼───────┼───────┼───────┼───────┼───────┼───────┐      ┌───────┼───────┼───────┼───────┼───────┼───────┼───────┤ 
-      KC_LCTL, KC_LEFT,KC_RIGHT,KC_LBRC,KC_RBRC,VI_PREV,                      KC_AMPR,KC_ASTR,KC_LPRN,KC_EQL, KC_QUES,KC_NO, 
+      KC_LCTL, KC_LEFT,KC_RIGHT,KC_LBRC,KC_RBRC,VI_PREV,                      KC_AMPR,KC_ASTR,KC_LPRN,KC_EQL, KC_QUES,DM_PLY1, 
    //└────────┴───────┴───────┴───┬───┴───┬───┴───┬───┴───┬───┘      └───┬───┴───┬───┴───┬───┴───┬───┼───────┼───────┼───────┤
                           DM_PLY1, DM_PLY2, TG_FUNCT, KC_SPC,KC_LEAD,        KC_RALT, KC_ENT, TT_RAISE, KC_HOME, KC_END
     ),
@@ -249,6 +249,23 @@ void matrix_scan_user(void) {
             SEND_STRING(SS_TAP(X_LGUI));
             _delay_ms(500);
             SEND_STRING("chrome"SS_TAP(X_ENT));
+        }
+        //workspace navigation
+        SEQ_TWO_KEYS(KC_W, KC_A) {
+            SEND_STRING(SS_DOWN(X_LCTRL) SS_DOWN(X_LSFT) SS_DOWN(X_LALT) "A" SS_UP(X_LALT) SS_UP(X_LCTRL) SS_UP(X_LSFT));
+        }
+        SEQ_TWO_KEYS(KC_W, KC_S) {
+            SEND_STRING(SS_DOWN(X_LCTRL) SS_DOWN(X_LSFT) SS_DOWN(X_LALT) "S" SS_UP(X_LALT) SS_UP(X_LCTRL) SS_UP(X_LSFT));
+        }
+
+        SEQ_TWO_KEYS(KC_W, KC_Y) {
+            SEND_STRING(SS_DOWN(X_LCTRL) SS_DOWN(X_LSFT)"!"SS_UP(X_LCTRL) SS_UP(X_LSFT));
+        }
+        SEQ_TWO_KEYS(KC_W, KC_U) {
+            SEND_STRING(SS_DOWN(X_LCTRL) SS_DOWN(X_LSFT)"@"SS_UP(X_LCTRL) SS_UP(X_LSFT));
+        }
+        SEQ_TWO_KEYS(KC_W, KC_I) {
+            SEND_STRING(SS_DOWN(X_LCTRL) SS_DOWN(X_LSFT) "#" SS_UP(X_LCTRL) SS_UP(X_LSFT));
         }
     }
 }

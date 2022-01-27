@@ -9,50 +9,15 @@
 
 #define _BASE 0
 
-#define SFT_ESC  SFT_T(KC_ESC)
-#define CTL_BSPC CTL_T(KC_BSPC)
-#define ALT_SPC  ALT_T(KC_SPC)
-#define SFT_ENT  SFT_T(KC_ENT)
-
-#define KC_ML KC_MS_LEFT
-#define KC_MR KC_MS_RIGHT
-#define KC_MU KC_MS_UP
-#define KC_MD KC_MS_DOWN
-#define KC_MB1 KC_MS_BTN1
-#define KC_MB2 KC_MS_BTN1
-
-#define RAISE MO(_RAISE)
-#define LOWER MO(_LOWER)
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    /* Base (qwerty)
-     * +-----------------------------------------+                             +-----------------------------------------+
-     * | ESC  |   q  |   w  |   e  |   r  |   t  |                             |   y  |   u  |   i  |   o  |   p  |      |
-     * |------+------+------+------+------+------|                             |------+------+------+------+------+------|
-     * | TAB  |   a  |   s  |   d  |   f  |   g  |                             |   h  |   j  |   k  |   l  |   ;  |      |
-     * |------+------+------+------+------+------|                             |------+------+------+------+------+------|
-     * | SHFT |   z  |   x  |   c  |   v  |   b  |                             |   n  |   m  |   ,  |   .  |   /  |      |
-     * +------+------+------+------+-------------+                             +-------------+------+------+------+------+
-     *               |  [   |   ]  |                                                         |      |      |
-     *               +-------------+-------------+                             +-------------+-------------+
-     *                             |      |      |                             |      |      |
-     *                             |------+------|                             |------+------|
-     *                             |      |      |                             |      |      |
-     *                             +-------------+                             +-------------+
-     *                                           +-------------+ +-------------+
-     *                                           |      |      | |      |      |
-     *                                           |------+------| |------+------|
-     *                                           |      |      | |      |      |
-     *                                           +-------------+ +-------------+
-     */
     [_BASE] = LAYOUT(
       KC_TAB,  KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                          KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_BSPC, 
    //├────────┼───────┼───────┼───────┼───────┼───────┤                      ├───────┼───────┼───────┼───────┼───────┼───────┤
       ESCLSFT,   KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                          KC_H,   KC_J,   KC_K,   KC_L,  KC_SCOLON,KC_BSLS,
    //├────────┼───────┼───────┼───────┼───────┼───────┼───────┐      ┌───────┼───────┼───────┼───────┼───────┼───────┼───────┤ 
-      KC_LCTL,  KC_Z,    KC_X,  KC_C,   KC_V,   KC_B,                          KC_N,  KC_M, KC_COMM,KC_DOT, KC_SLSH,   KC_LEFT, 
+      KC_LCTL,  KC_Z,    KC_X,  KC_C,   KC_V,   KC_B,                          KC_N,  KC_M, KC_COMM,KC_DOT, KC_SLSH,   DM_REC1, 
    //└────────┴───────┴───────┴───┬───┴───┬───┴───┬───┴───┬───┘      └───┬───┴───┬───┴───┬───┴───┬───┼───────┼───────┼───────┤
-                         KC_NO, KC_NO,TT_LOWR, KC_SPC,TD_LEAD,          TD_ALT, TD_ENT, TT_RAISE, KC_NO, KC_NO 
+                         DM_REC1, DM_REC2,TD_LEAD,TT_LOWR, KC_SPC,           TD_ENT, TT_RAISE,TD_ALT, KC_LEFT, KC_RIGHT 
     //                            └───────┴───────┴───────┘              └───────┴───────┴───────┘ 
     ),
 
@@ -62,32 +27,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    //├───────┼───────┼───────┼───────┼───────┼───────┤                      ├───────┼───────┼───────┼───────┼───────┼───────┤
       KC_TILD, KC_UP, KC_DOWN,KC_DQT,TM_UP,TM_DOWN,                         KC_4,   KC_5,    KC_6,  KC_0,   KC_PPLS,KC_PMNS,
    //├───────┼───────┼───────┼───────┼───────┼───────┼───────┐      ┌───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-      ESCLCTL,KC_LEFT,KC_RIGHT,TM_SELECT,TM_LEFT,TM_RIGHT,                    KC_7,  KC_8,    KC_9,  KC_DOT, KC_ASTR ,KC_PSLS, 
+      ESCLCTL,KC_LEFT,KC_RIGHT,TM_SELECT,TM_LEFT,TM_RIGHT,                    KC_7,  KC_8,    KC_9,  KC_DOT, KC_ASTR ,DM_RSTP, 
    //└───────┴───────┴───────┴───┬───┴───┬───┴───┬───┴───┬───┘      └───┬───┴───┬───┴───┬───┴───┬───┼───────┼───────┼───────┤
-                          KC_NO, KC_NO, TT_LOWR,KC_SPC, KC_ESC,         KC_RALT, KC_ENT, KC_LGUI, KC_NO, KC_NO 
+                          DM_PLY1, DM_PLY2,KC_ESC,TT_LOWR,KC_SPC,           KC_ENT, KC_LGUI,KC_RALT, KC_LEFT, KC_RIGHT 
     //                           └───────┴───────┴───────┘              └───────┴───────┴───────┘ 
     ),
 
     [_RAISE] = LAYOUT(
    //├────────┼───────┼───────┼───────┼───────┼───────┤                      ├───────┼───────┼───────┼───────┼───────┼───────┤
-       KC_HOME, VI_QUIT,VI_SAVE,KC_LCBR,KC_RCBR,KC_QUOT,                       KC_EXLM,KC_AT , KC_HASH,KC_UNDS,KC_DEL,KC_BSPC, 
+       KC_TAB, VI_QUIT,VI_SAVE,KC_LCBR,KC_RCBR,KC_QUOT,                       KC_EXLM,KC_AT , KC_HASH,KC_UNDS,KC_DEL,KC_BSPC, 
    //├────────┼───────┼───────┼───────┼───────┼───────┤                      ├───────┼───────┼───────┼───────┼───────┼───────┤
-      KC_END, KC_UP,  KC_DOWN, KC_LPRN,KC_RPRN, KC_DQT,                      KC_DLR, KC_PERC,KC_CIRC,KC_RPRN,KC_LEFT, KC_RIGHT, 
+      ESCLSFT, KC_UP,  KC_DOWN, KC_LPRN,KC_RPRN, KC_DQT,                      KC_DLR, KC_PERC,KC_CIRC,KC_RPRN,KC_LEFT, KC_RIGHT, 
    //├────────┼───────┼───────┼───────┼───────┼───────┼───────┐      ┌───────┼───────┼───────┼───────┼───────┼───────┼───────┤ 
-      ESCLCTL, KC_LEFT,KC_RIGHT,KC_LBRC,KC_RBRC,VI_PREV,                      KC_AMPR,KC_ASTR,KC_LPRN,KC_EQL, KC_QUES,KC_NO, 
+      KC_LCTL, KC_LEFT,KC_RIGHT,KC_LBRC,KC_RBRC,VI_PREV,                      KC_AMPR,KC_ASTR,KC_LPRN,KC_EQL, KC_QUES,DM_PLY1, 
    //└────────┴───────┴───────┴───┬───┴───┬───┴───┬───┴───┬───┘      └───┬───┴───┬───┴───┬───┴───┬───┼───────┼───────┼───────┤
-                          KC_NO, KC_NO, TG_FUNCT, KC_SPC,KC_LEAD,        KC_RALT, KC_ENT, TT_RAISE, KC_NO, KC_NO
+                          DM_PLY1, DM_PLY2, KC_LEAD,TG_FUNCT, KC_SPC,         KC_ENT, TT_RAISE,KC_RALT, KC_HOME, KC_END
     ),
 
   [_FUNCT] = LAYOUT(
    //├────────┼───────┼───────┼───────┼───────┼───────┤                      ├───────┼───────┼───────┼───────┼───────┼───────┤
       KC_TAB,  KC_W,  KC_F10,  KC_F1, KC_F2,  KC_F3 ,                         KC_MUTE,KC_VOLD,KC_VOLU,KC_MPRV,KC_MPLY, KC_BSPC,
    //├────────┼───────┼───────┼───────┼───────┼───────┤                      ├───────┼───────┼───────┼───────┼───────┼───────┤
-      KC_LSFT, KC_C,  KC_F11, KC_F4,   KC_F5, KC_F6,                         KC_MS_L,KC_MS_D,KC_MS_U,KC_MS_R,KC_LEFT, KC_RIGHT, 
+      ESCLSFT, KC_C,  KC_F11, KC_F4,   KC_F5, KC_F6,                         KC_MS_L,KC_MS_D,KC_MS_U,KC_MS_R,RGB_VAD, RGB_VAI, 
    //├────────┼───────┼───────┼───────┼───────┼───────┼───────┐      ┌───────┼───────┼───────┼───────┼───────┼───────┼───────┤ 
-      ESCLCTL, KC_V,   KC_F12, KC_F7, KC_F8, KC_F9,                     MEDIA_MIC_MUTE,KC_WH_U,KC_WH_D,KC_MNXT, RGBEMOD,RESET, 
+      KC_LCTL, KC_V,   KC_F12, KC_F7, KC_F8, KC_F9,                     MEDIA_MIC_MUTE,KC_WH_U,KC_WH_D,KC_MNXT, RGBEMOD,RESET, 
    //└────────┴───────┴───────┴───┬───┴───┬───┴───┬───┴───┬───┘      └───┬───┴───┬───┴───┬───┴───┬───┼───────┼───────┼───────┤
-                        KC_NO, KC_NO, TG_FUNCT, KC_ENT,KC_ESC,      KC_RALT, KC_BTN1 , KC_BTN2, KC_NO, KC_NO
+                        KC_UP, KC_DOWN,KC_LEAD,TG_FUNCT,KC_SPC,         KC_BTN1,KC_BTN2,KC_RALT,KC_LEFT,KC_RIGHT
     //                            └───────┴───────┴───────┘              └───────┴───────┴───────┘ 
   )
 };
@@ -108,41 +73,41 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case ON_QWERTY:
-      if (record->event.pressed) {
-        layer_off(_FUNCT);
-        layer_off(_LOWER);
-        layer_off(_RAISE);
-        layer_on(_QWERTY);
-      }
-      return false;
-    
-    case ON_LOWER:
-      if (record->event.pressed) {
-        layer_off(_FUNCT);
-        layer_off(_RAISE);
-        layer_off(_QWERTY);
-        layer_on(_LOWER);
-      }
-      return false;
-    
-    case ON_RAISE:
-      if (record->event.pressed) {
-        layer_off(_FUNCT);
-        layer_off(_LOWER);
-        layer_off(_QWERTY);
-        layer_on(_RAISE);
-      }
-      return false;
-
-    case ON_FUNCT:
-      if (record->event.pressed) {
-        layer_off(_RAISE);
-        layer_off(_LOWER);
-        layer_off(_QWERTY);
-        layer_on(_FUNCT);
-      }
-      return false;
+//    case ON_QWERTY:
+//      if (record->event.pressed) {
+//        layer_off(_FUNCT);
+//        layer_off(_LOWER);
+//        layer_off(_RAISE);
+//        layer_on(_QWERTY);
+//      }
+//      return false;
+//    
+//    case ON_LOWER:
+//      if (record->event.pressed) {
+//        layer_off(_FUNCT);
+//        layer_off(_RAISE);
+//        layer_off(_QWERTY);
+//        layer_on(_LOWER);
+//      }
+//      return false;
+//    
+//    case ON_RAISE:
+//      if (record->event.pressed) {
+//        layer_off(_FUNCT);
+//        layer_off(_LOWER);
+//        layer_off(_QWERTY);
+//        layer_on(_RAISE);
+//      }
+//      return false;
+//
+//    case ON_FUNCT:
+//      if (record->event.pressed) {
+//        layer_off(_RAISE);
+//        layer_off(_LOWER);
+//        layer_off(_QWERTY);
+//        layer_on(_FUNCT);
+//      }
+//      return false;
       
     case VI_SAVE:
       if (record->event.pressed) {
@@ -273,6 +238,17 @@ void matrix_scan_user(void) {
         SEQ_THREE_KEYS(KC_G, KC_D, KC_H) {
             //SEND_STRING(SS_LCTL("a") SS_LCTL("c"));
             SEND_STRING("git diff HEAD .");
+        }
+        //window
+        SEQ_TWO_KEYS(KC_W, KC_T) {
+            SEND_STRING(SS_TAP(X_LGUI));
+            _delay_ms(500);
+            SEND_STRING("terminal"SS_TAP(X_ENT));
+        }
+        SEQ_TWO_KEYS(KC_W, KC_C) {
+            SEND_STRING(SS_TAP(X_LGUI));
+            _delay_ms(500);
+            SEND_STRING("chrome"SS_TAP(X_ENT));
         }
     }
 }

@@ -19,12 +19,12 @@ void handle_layer_changes(layer_state_t state) {
 
     case _FUNCT:
       rgblight_mode_noeeprom(RGBLIGHT_MODE_TWINKLE+3);
-      rgblight_sethsv_noeeprom(HSV_PURPLE);
+      rgblight_sethsv_noeeprom(HSV_RED);
       break;
     
     case _CONFIG:
-      rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+2);
-      rgblight_sethsv_noeeprom(HSV_BLUE);
+      rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD+2);
+      rgblight_sethsv_noeeprom(HSV_RED);
       break;
   }
 }
