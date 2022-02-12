@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_MODE_TWINKLE
 #define RGBLIGHT_SPLIT
 #undef RGBLED_NUM
-#define RGBLED_NUM 18    // Number of LEDs
+#define RGBLED_NUM 18// Number of LEDs
 #define RGBLED_SPLIT { 9, 9 }
 #define RGBLIGHT_SLEEP
 #define RGBLIGHT_DEFAULT_MODE RGBLIGHT_MODE_RAINBOW_SWIRL+2

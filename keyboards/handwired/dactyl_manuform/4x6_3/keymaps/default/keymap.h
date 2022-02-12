@@ -34,6 +34,10 @@ enum custom_keycodes {
   TM_HOME,
   TM_END,
 
+  EDIT_Z,
+  EDIT_C,
+  EDIT_V,
+
   MEDIA_MIC_MUTE
 };
 

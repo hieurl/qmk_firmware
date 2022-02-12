@@ -36,6 +36,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLED_NUM  6
 #define RGBLED_SPLIT { 3, 3}
 
+#define RGBLIGHT_DEFAULT_MODE RGBLIGHT_MODE_RAINBOW_SWIRL+2
+#define RGBLIGHT_DEFAULT_HUE 255
+
 #define LEADER_NO_TIMEOUT
 #define LEADER_PER_KEY_TIMING
 #define LEADER_TIMEOUT 500

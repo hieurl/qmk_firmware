@@ -29,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    //├───────┼───────┼───────┼───────┼───────┼───────┼───────┐      ┌───────┼───────┼───────┼───────┼───────┼───────┼───────┤
       ESCLCTL,KC_LEFT,KC_RIGHT,TM_SELECT,TM_LEFT,TM_RIGHT,                    KC_7,  KC_8,    KC_9,  KC_DOT, KC_ASTR ,DM_RSTP, 
    //└───────┴───────┴───────┴───┬───┴───┬───┴───┬───┴───┬───┘      └───┬───┴───┬───┴───┬───┴───┬───┼───────┼───────┼───────┤
-                          DM_PLY1, DM_PLY2, TT_LOWR,KC_SPC, KC_ESC,         KC_RALT, KC_ENT, KC_LGUI, KC_LEFT, KC_RIGHT 
+                          DM_PLY1, DM_PLY2, TT_LOWR,KC_SPC, KC_ESC,         KC_RALT, KC_ENT, KC_LGUI, KC_HOME, KC_END
     //                           └───────┴───────┴───────┘              └───────┴───────┴───────┘ 
     ),
 
@@ -46,11 +46,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_FUNCT] = LAYOUT(
    //├────────┼───────┼───────┼───────┼───────┼───────┤                      ├───────┼───────┼───────┼───────┼───────┼───────┤
-      KC_TAB,  KC_W,  KC_F10,  KC_F1, KC_F2,  KC_F3 ,                         KC_MUTE,KC_VOLD,KC_VOLU,KC_MPRV,KC_MPLY, KC_BSPC,
+      KC_TAB,  KC_Q,  KC_F10,  KC_F1, KC_F2,  KC_F3 ,                         KC_MUTE,KC_VOLD,KC_VOLU,MEDIA_MIC_MUTE,RGBEMOD, KC_BSPC,
    //├────────┼───────┼───────┼───────┼───────┼───────┤                      ├───────┼───────┼───────┼───────┼───────┼───────┤
-      ESCLSFT, KC_C,  KC_F11, KC_F4,   KC_F5, KC_F6,                         KC_MS_L,KC_MS_D,KC_MS_U,KC_MS_R,RGB_VAD, RGB_VAI, 
+      ESCLSFT, KC_A,  KC_F11, KC_F4,   KC_F5, KC_F6,                         KC_MS_L,KC_MS_D,KC_MS_U,KC_MS_R,RGB_VAD, RGB_VAI, 
    //├────────┼───────┼───────┼───────┼───────┼───────┼───────┐      ┌───────┼───────┼───────┼───────┼───────┼───────┼───────┤ 
-      KC_LCTL, KC_V,   KC_F12, KC_F7, KC_F8, KC_F9,                     MEDIA_MIC_MUTE,KC_WH_U,KC_WH_D,KC_MNXT, RGBEMOD,RESET, 
+      KC_LCTL, KC_Z,   KC_F12, KC_F7, KC_F8, KC_F9,                     EDIT_C,KC_WH_U,KC_WH_D,EDIT_V, EDIT_V,RESET, 
    //└────────┴───────┴───────┴───┬───┴───┬───┴───┬───┴───┬───┘      └───┬───┴───┬───┴───┬───┴───┬───┼───────┼───────┼───────┤
                         KC_UP, KC_DOWN, TG_FUNCT, KC_BTN1,KC_BTN2,      KC_RALT, KC_BTN1 , KC_BTN2, KC_LEFT, KC_RIGHT
     //                            └───────┴───────┴───────┘              └───────┴───────┴───────┘ 
@@ -166,7 +166,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case TM_END:
       if (record->event.pressed) {
-          SEND_STRING(SS_TAP(X_ESC)"$i"SS_TAP(X_RIGHT));
+          SEND_STRING(SS_TAP(X_ESC)"$a");
+      }
+      break;
+
+    case EDIT_C:
+      if (record->event.pressed) {
+          SEND_STRING(SS_DOWN(X_LCTRL) SS_TAP(X_C) SS_UP(X_LCTRL));
+      }
+      break;
+    case EDIT_V:
+      if (record->event.pressed) {
+          SEND_STRING(SS_DOWN(X_LCTRL) SS_TAP(X_V) SS_UP(X_LCTRL));
+      }
+      break;
+    case EDIT_Z:
+      if (record->event.pressed) {
+          SEND_STRING(SS_DOWN(X_LCTRL) SS_TAP(X_Z) SS_UP(X_LCTRL));
       }
       break;
 
