@@ -17,7 +17,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    //├────────┼───────┼───────┼───────┼───────┼───────┼───────┐      ┌───────┼───────┼───────┼───────┼───────┼───────┼───────┤ 
       KC_LCTL,  KC_Z,    KC_X,  KC_C,   KC_V,   KC_B,                          KC_N,  KC_M, KC_COMM,KC_DOT, KC_SLSH,   DM_REC1, 
    //└────────┴───────┴───────┴───┬───┴───┬───┴───┬───┴───┬───┘      └───┬───┴───┬───┴───┬───┴───┬───┼───────┼───────┼───────┤
-                         DM_REC1, DM_REC2,TT_LOWR, KC_SPC,TD_LEAD,          TD_ALT, TD_ENT, TT_RAISE, KC_LEFT, KC_RIGHT 
+                         WIN_LEFT, WIN_RIGHT,TT_LOWR, KC_SPC,TD_LEAD,          TD_ALT, TD_ENT, TT_RAISE, WIN_UP, WIN_DOWN 
     //                            └───────┴───────┴───────┘              └───────┴───────┴───────┘ 
     ),
 
@@ -29,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    //├───────┼───────┼───────┼───────┼───────┼───────┼───────┐      ┌───────┼───────┼───────┼───────┼───────┼───────┼───────┤
       ESCLCTL,KC_LEFT,KC_RIGHT,TM_SELECT,TM_LEFT,TM_RIGHT,                    KC_7,  KC_8,    KC_9,  KC_DOT, KC_ASTR ,DM_RSTP, 
    //└───────┴───────┴───────┴───┬───┴───┬───┴───┬───┴───┬───┘      └───┬───┴───┬───┴───┬───┴───┬───┼───────┼───────┼───────┤
-                          DM_PLY1, DM_PLY2, TT_LOWR,KC_SPC, KC_ESC,         KC_RALT, KC_ENT, KC_LGUI, KC_HOME, KC_END
+                          DM_REC1, DM_REC2, TT_LOWR,KC_SPC, KC_ESC,         KC_RALT, KC_ENT, KC_LGUI, KC_HOME, KC_END
     //                           └───────┴───────┴───────┘              └───────┴───────┴───────┘ 
     ),
 
@@ -108,6 +108,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 //        layer_on(_FUNCT);
 //      }
 //      return false;
+    case WIN_LEFT:
+      if (record->event.pressed) {
+          SEND_STRING(SS_DOWN(X_LGUI) SS_TAP(X_LEFT) SS_UP(X_LGUI));
+      }
+      break;
+    case WIN_RIGHT:
+      if (record->event.pressed) {
+          SEND_STRING(SS_DOWN(X_LGUI) SS_TAP(X_RIGHT) SS_UP(X_LGUI));
+      }
+      break;
+    case WIN_UP:
+      if (record->event.pressed) {
+          SEND_STRING(SS_DOWN(X_LGUI) SS_TAP(X_UP) SS_UP(X_LGUI));
+      }
+      break;
+    case WIN_DOWN:
+      if (record->event.pressed) {
+          SEND_STRING(SS_DOWN(X_LGUI) SS_TAP(X_DOWN) SS_UP(X_LGUI));
+      }
+      break;
       
     case VI_SAVE:
       if (record->event.pressed) {

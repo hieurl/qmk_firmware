@@ -38,6 +38,11 @@ enum custom_keycodes {
   EDIT_C,
   EDIT_V,
 
+  WIN_LEFT,
+  WIN_RIGHT,
+  WIN_UP,
+  WIN_DOWN,
+
   MEDIA_MIC_MUTE
 };
 
