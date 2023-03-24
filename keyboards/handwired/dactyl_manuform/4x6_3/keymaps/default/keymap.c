@@ -9,6 +9,8 @@
 
 #define _BASE 0
 
+uint16_t CURRENT_STATUS;
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
       KC_TAB,  KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                          KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_BSPC, 
@@ -48,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    //├────────┼───────┼───────┼───────┼───────┼───────┤                      ├───────┼───────┼───────┼───────┼───────┼───────┤
       KC_TAB,  KC_Q,  KC_F10,  KC_F1, KC_F2,  KC_F3 ,                         KC_MUTE,KC_VOLD,KC_VOLU,MEDIA_MIC_MUTE,RGBEMOD, KC_BSPC,
    //├────────┼───────┼───────┼───────┼───────┼───────┤                      ├───────┼───────┼───────┼───────┼───────┼───────┤
-      ESCLSFT, KC_A,  KC_F11, KC_F4,   KC_F5, KC_F6,                         KC_MS_L,KC_MS_D,KC_MS_U,KC_MS_R,RGB_VAD, RGB_VAI, 
+      ESCLSFT, KC_A,  KC_F11, KC_F4,   KC_F5, KC_F6,                         KC_MS_L,KC_MS_D,KC_MS_U,KC_MS_R,RGB_VAD, CHANGE_STATUS, 
    //├────────┼───────┼───────┼───────┼───────┼───────┼───────┐      ┌───────┼───────┼───────┼───────┼───────┼───────┼───────┤ 
       KC_LCTL, KC_Z,   KC_F12, KC_F7, KC_F8, KC_F9,                     EDIT_C,KC_WH_U,KC_WH_D,EDIT_V, EDIT_V,RESET, 
    //└────────┴───────┴───────┴───┬───┴───┬───┴───┬───┴───┬───┘      └───┬───┴───┬───┴───┬───┴───┬───┼───────┼───────┼───────┤
@@ -56,6 +58,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //                            └───────┴───────┴───────┘              └───────┴───────┴───────┘ 
   )
 };
+
+void keyboard_post_init_user(void) {
+    CURRENT_STATUS = STATUS_AVAILABLE;
+}
 
 void persistent_default_layer_set(uint16_t default_layer) {
     eeconfig_update_default_layer(default_layer);
@@ -209,6 +215,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case MEDIA_MIC_MUTE:
       if (record->event.pressed) {
           SEND_STRING(SS_DOWN(X_LCTRL) SS_DOWN(X_LSFT) SS_DOWN(X_RALT) SS_TAP(X_M) SS_UP(X_LCTRL) SS_UP(X_LSFT) SS_UP(X_RALT));
+      }
+    case CHANGE_STATUS:
+      if (record->event.pressed) {
+          if (CURRENT_STATUS == STATUS_AVAILABLE) {
+              CURRENT_STATUS = STATUS_BUSY;
+          } else {
+              CURRENT_STATUS = STATUS_AVAILABLE;
+          }
       }
   }
 

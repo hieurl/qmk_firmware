@@ -109,14 +109,14 @@ void t_ent_finished (qk_tap_dance_state_t *state, void *user_data) {
       tap_code16(KC_ENT);
       break;
     case SINGLE_HOLD: 
-      tap_code16(KC_ENT);
+      //tap_code16(KC_ENT);
       break;
     case DOUBLE_TAP: 
       tap_code16(KC_ENT);
       tap_code16(KC_ENT);
       break;
     case DOUBLE_HOLD:
-      tap_code16(KC_ENT);
+      register_code(KC_LGUI);
       tap_code16(KC_ENT);
       break;
     case TRIPLE_TAP:
@@ -134,6 +134,7 @@ void t_ent_reset (qk_tap_dance_state_t *state, void *user_data) {
     case DOUBLE_TAP:
       break;
     case DOUBLE_HOLD: 
+      unregister_code(KC_LGUI);
       break;
     case TRIPLE_TAP:
       break;

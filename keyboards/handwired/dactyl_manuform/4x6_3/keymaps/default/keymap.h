@@ -43,7 +43,9 @@ enum custom_keycodes {
   WIN_UP,
   WIN_DOWN,
 
-  MEDIA_MIC_MUTE
+  MEDIA_MIC_MUTE,
+
+  CHANGE_STATUS
 };
 
 #define MO_LOWR MO(_LOWER)
