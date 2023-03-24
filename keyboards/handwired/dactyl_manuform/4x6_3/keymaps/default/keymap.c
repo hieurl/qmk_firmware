@@ -224,6 +224,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
               CURRENT_STATUS = STATUS_AVAILABLE;
           }
       }
+      layer_off(_FUNCT);
+      layer_off(_LOWER);
+      layer_off(_RAISE);
+      layer_on(_QWERTY);
   }
 
   #ifdef RGBLIGHT_ENABLE
